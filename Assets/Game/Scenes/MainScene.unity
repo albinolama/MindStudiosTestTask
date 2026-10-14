@@ -739,8 +739,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63527777069642e78b2a165b0b2f3347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RadialSpawnArea
-  innerRadius: 6
-  outerRadius: 8
+  innerRadius: 2
+  outerRadius: 5
+  drawInnerRadius: 1
+  drawOuterRadius: 1
 --- !u!1 &1511601877
 GameObject:
   m_ObjectHideFlags: 0

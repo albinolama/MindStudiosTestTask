@@ -7,9 +7,18 @@ namespace Game.Scripts.Spawn
     {
         [SerializeField, Min(0f)] private float innerRadius = 2f;
         [SerializeField, Min(0f)] private float outerRadius = 5f;
-    
+        
+        [SerializeField] private bool drawInnerRadius = true;
+        [SerializeField] private bool drawOuterRadius = true;
+        
         private const float TwoPi = Mathf.PI * 2f;
 
+        private void OnValidate()
+        {
+            innerRadius = Mathf.Clamp(innerRadius, 0f, outerRadius);
+            outerRadius = Mathf.Max(outerRadius, innerRadius);
+        }
+        
         public override Vector3 GetRandomPosition()
         {
             var inner = Mathf.Min(innerRadius, outerRadius);
@@ -27,12 +36,22 @@ namespace Game.Scripts.Spawn
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            using (new Handles.DrawingScope(Color.green, transform.localToWorldMatrix))
+            if (drawInnerRadius)
             {
-                Handles.DrawWireDisc(Vector3.zero, Vector3.up, innerRadius);
+                using (new Handles.DrawingScope(Color.green, transform.localToWorldMatrix))
+                {
+                    Handles.DrawWireDisc(Vector3.zero, Vector3.up, innerRadius);
+                } 
+            }
 
-                Handles.DrawWireDisc(Vector3.zero, Vector3.up, outerRadius);
+            if (!drawOuterRadius)
+            {
+                return;
+            }
             
+            using (new Handles.DrawingScope(Color.blue, transform.localToWorldMatrix))
+            {
+                Handles.DrawWireDisc(Vector3.zero, Vector3.up, outerRadius);
             }
         }
 #endif

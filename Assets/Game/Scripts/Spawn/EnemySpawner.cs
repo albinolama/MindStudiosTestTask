@@ -9,9 +9,9 @@ namespace Game.Scripts.Spawn
         [SerializeField] private EnemyView enemyPrefab;
         [SerializeField] private SpawnArea spawnArea;
         
-        private WaveController _waveController;
+        private IWaveController _waveController;
     
-        public void Initialize(WaveController waveController)
+        public void Initialize(IWaveController waveController)
         {
             _waveController = waveController;
             _waveController.SpawnRequested += SpawnEnemy;

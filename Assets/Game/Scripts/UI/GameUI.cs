@@ -10,7 +10,7 @@ namespace Game.Scripts.UI
         [SerializeField] private TextMeshProUGUI currentWaveTextMesh;
         [SerializeField] private TextMeshProUGUI gameCompletedTextMesh;
     
-        private WaveController _waveController;
+        private IReadOnlyWaveController _waveController;
 
         private void Start()
         {
@@ -19,7 +19,7 @@ namespace Game.Scripts.UI
             gameCompletedTextMesh.enabled = false;
         }
     
-        public void Initialize(WaveController waveController)
+        public void Initialize(IReadOnlyWaveController waveController)
         {
             _waveController = waveController;
 

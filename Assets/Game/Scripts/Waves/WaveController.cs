@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Waves
 {
-    public class WaveController
+    public class WaveController : IWaveController
     {
         public event Action SpawnRequested;
         public event Action GameCompleted;
